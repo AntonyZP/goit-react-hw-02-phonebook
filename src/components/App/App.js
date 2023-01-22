@@ -1,3 +1,7 @@
+import React from "react";
+import ContactList from 'components/ContactList';
+
+
 export const App = () => {
   return (
     <div
