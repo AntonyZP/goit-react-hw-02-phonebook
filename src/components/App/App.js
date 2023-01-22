@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ContactList from 'components/ContactList';
+import { ContactName } from "components/ContactList/Contact.styled";
 
 
 export default class App extends Component {
@@ -13,13 +14,20 @@ export default class App extends Component {
     name: '',
   }
 
+deleteContact = (contactId) =>{
+  this.setState(prevState =>({
+    contacts: prevState.contacts.filter(contact =>
+       contact.id !== contactId),
+  }))
+}
+
   render () {
 const {contacts} = this.state;
 
     return ( 
       <>
       <h1>ContactList</h1>
-      <ContactList contacts={contacts}/>
+      <ContactList contacts={contacts} onDeleteContact={this.deleteContact}/>
       </>
      );
   }
