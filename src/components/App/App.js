@@ -1,20 +1,17 @@
-import React from "react";
+import React, { Component } from "react";
 import ContactList from 'components/ContactList';
 
 
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+export default class App extends Component {
+  state ={}
+
+  render () {
+    return ( 
+      <>
+      <h1>ContactList</h1>
+      <ContactList/>
+      </>
+     );
+  }
+}
+ 
