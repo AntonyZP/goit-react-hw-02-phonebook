@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ContactList from 'components/ContactList';
-import { ContactName } from "components/ContactList/Contact.styled";
-
+// import { ContactName } from "components/ContactList/Contact.styled";
+import ContactEditor from 'components/ContactEditor';
 
 export default class App extends Component {
   state ={
@@ -26,8 +26,12 @@ const {contacts} = this.state;
 
     return ( 
       <>
-      <h1>ContactList</h1>
-      <ContactList contacts={contacts} onDeleteContact={this.deleteContact}/>
+      <h1>Phonebook</h1>
+       <ContactEditor />
+
+        <ContactList contacts={contacts} onDeleteContact={this.deleteContact}/>
+
+      
       </>
      );
   }
