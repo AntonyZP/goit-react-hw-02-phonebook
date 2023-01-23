@@ -13,5 +13,4 @@ margin-right: 20px;
 export const ContactNumber = styled.p`
 font-size: 14px;
 margin-right: 20px;
-
 `;

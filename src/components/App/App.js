@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { nanoid } from 'nanoid'
 import ContactList from 'components/ContactList';
 // import { ContactName } from "components/ContactList/Contact.styled";
-import ContactEditor from 'components/ContactEditor';
+import ContactForm from 'components/ContactForm';
 
 export default class App extends Component {
   state ={
@@ -12,10 +12,10 @@ export default class App extends Component {
       {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
+    inputName: '',
+    inputNumber: '',
  
   }
-
-
 
 addContact = contact => {
   this.setState(prevState => ({
@@ -24,7 +24,7 @@ addContact = contact => {
       {id: nanoid(), name: contact.name, number: contact.number}
     ]
   }))
-}
+} 
 
 deleteContact = (contactId) =>{
   this.setState(prevState =>({
@@ -33,13 +33,14 @@ deleteContact = (contactId) =>{
   }))
 }
 
-  render () {
+render () {
 const {contacts} = this.state;
 
     return ( 
       <>
       <h1>Phonebook</h1>
-       <ContactEditor onSubmit = {this.addContact} contacts={contacts}/>
+
+<ContactForm></ContactForm>
 
        <h2>Contacts</h2>
 
