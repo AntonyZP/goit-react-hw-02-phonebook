@@ -9,3 +9,9 @@ export const Contact = styled.li`
 export const ContactName = styled.p`
 margin-right: 20px;
 `;
+
+export const ContactNumber = styled.p`
+font-size: 14px;
+margin-right: 20px;
+
+`;
