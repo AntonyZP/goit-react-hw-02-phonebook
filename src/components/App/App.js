@@ -24,11 +24,15 @@ deleteContact = (contactId) =>{
 }
 
 formSubmitHandler = contact => {
+  const { contacts } = this.state;
+  contacts.some(({ name }) => name === contact.name)
+  ? alert(`${contact.name} is already in contacts`)
+  :
   this.setState(prevState => ({
     contacts: [
         { id: nanoid(), 
-        name: contact.inputName, 
-        number: contact.inputNumber },
+        name: contact.name, 
+        number: contact.number },
         ...prevState.contacts,
     ],
   }));
