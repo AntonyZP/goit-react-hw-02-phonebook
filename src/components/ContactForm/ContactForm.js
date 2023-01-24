@@ -13,10 +13,19 @@
 
     handleSubmit =e => {
         e.preventDefault();
-        this.props.onSubmit(this.state);
+        const { inputName } = this.state;
+        const { onSubmit, contacts } = this.props;
+        // const recurringContact = contacts.map(contact => contact.name);
+
+        // if (recurringContact.includes(inputName)) {
+        //   alert(`${this.state.name} is already in contacts`);
+        //   return;
+        // }
+
+        onSubmit(this.state);
         this.reset();
     }
-      
+
     reset=()=>{
         this.setState({
             inputName: '',

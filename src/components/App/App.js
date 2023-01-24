@@ -35,7 +35,7 @@ formSubmitHandler = contact => {
 };
 
 changeFilter =e=> {
-  this.setState({filter: e.target.value})
+  this.setState({filter: e.currentTarget.value})
 }
 
 getVisibleContacts = () => {
@@ -52,19 +52,15 @@ render () {
   const visibleContacts = this.getVisibleContacts();
 
     return ( 
-      <>
+      <div>
       <h1>Phonebook</h1>
-
       <ContactForm onSubmit ={this.formSubmitHandler} ></ContactForm>
-
-      <Filter value={filter} onChange={this.changeFilter} />
       
       <h2>Contacts</h2>
-
+      <Filter value={filter} onChange={this.changeFilter} />      
       <ContactList contacts={visibleContacts} onDeleteContact={this.deleteContact}/>
-
-      
-      </>
+    
+      </div>
      );
   }
 }
