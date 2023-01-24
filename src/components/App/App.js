@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'
 import ContactList from 'components/ContactList';
 // import { ContactName } from "components/ContactList/Contact.styled";
 import ContactForm from 'components/ContactForm';
+import Filter from 'components/Filter';
 
 export default class App extends Component {
   state ={
@@ -12,8 +13,7 @@ export default class App extends Component {
       {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
-
- 
+    filter:'', 
   }
 
 deleteContact = (contactId) =>{
@@ -34,18 +34,34 @@ formSubmitHandler = contact => {
   }));
 };
 
+changeFilter =e=> {
+  this.setState({filter: e.target.value})
+}
+
+getVisibleContacts = () => {
+  const { contacts, filter } = this.state;
+  return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    )
+  
+}
+
+
 render () {
-const {contacts} = this.state;
+  const { filter} = this.state;
+  const visibleContacts = this.getVisibleContacts();
 
     return ( 
       <>
       <h1>Phonebook</h1>
 
-<ContactForm onSubmit ={this.formSubmitHandler} ></ContactForm>
+      <ContactForm onSubmit ={this.formSubmitHandler} ></ContactForm>
 
-       <h2>Contacts</h2>
+      <Filter value={filter} onChange={this.changeFilter} />
+      
+      <h2>Contacts</h2>
 
-        <ContactList contacts={contacts} onDeleteContact={this.deleteContact}/>
+      <ContactList contacts={visibleContacts} onDeleteContact={this.deleteContact}/>
 
       
       </>
