@@ -12,19 +12,9 @@ export default class App extends Component {
       {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
-    inputName: '',
-    inputNumber: '',
+
  
   }
-
-addContact = contact => {
-  this.setState(prevState => ({
-    contacts: [
-      ...prevState.contacts,
-      {id: nanoid(), name: contact.name, number: contact.number}
-    ]
-  }))
-} 
 
 deleteContact = (contactId) =>{
   this.setState(prevState =>({
@@ -33,6 +23,17 @@ deleteContact = (contactId) =>{
   }))
 }
 
+formSubmitHandler = contact => {
+  this.setState(prevState => ({
+    contacts: [
+        { id: nanoid(), 
+        name: contact.inputName, 
+        number: contact.inputNumber },
+        ...prevState.contacts,
+    ],
+  }));
+};
+
 render () {
 const {contacts} = this.state;
 
@@ -40,7 +41,7 @@ const {contacts} = this.state;
       <>
       <h1>Phonebook</h1>
 
-<ContactForm></ContactForm>
+<ContactForm onSubmit ={this.formSubmitHandler} ></ContactForm>
 
        <h2>Contacts</h2>
 

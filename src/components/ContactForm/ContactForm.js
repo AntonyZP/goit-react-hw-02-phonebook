@@ -3,8 +3,8 @@
 
  class ContactForm extends Component {
     state = { 
-        name: '',
-        number: ''};
+        inputName: '',
+        inputNumber: ''};
 
     handleInputChange = e=> {
         const {name, value} = e.currentTarget;
@@ -13,10 +13,15 @@
 
     handleSubmit =e => {
         e.preventDefault();
-      
-        console.log(this.state)
+        this.props.onSubmit(this.state);
+        this.reset();
     }
       
+    reset=()=>{
+        this.setState({
+            inputName: '',
+            inputNumber:''})
+    }
 
     render() {
         return (   
