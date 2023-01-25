@@ -1,4 +1,6 @@
  import React, {Component} from "react";
+ import PropTypes from 'prop-types';
+
  import {Form, Label, ContactInput, AddButton} from './ContactForm.styled'
 
 
@@ -64,3 +66,11 @@
     } 
     
 export default ContactForm;
+
+
+ContactForm.propTypes = {
+    name: PropTypes.string,
+    number: PropTypes.string,
+    onSubmit: PropTypes.func.isRequired,
+};
+
