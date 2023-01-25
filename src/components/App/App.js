@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { nanoid } from 'nanoid'
 import ContactList from 'components/ContactList';
-import { Section,  Title, SubTitle, ListWrapper} from "components/App/App.styled";
 import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
+import { Section,  Title, SubTitle, ListWrapper} from "components/App/App.styled";
 
 export default class App extends Component {
   state ={
@@ -16,27 +16,27 @@ export default class App extends Component {
     filter:'', 
   }
 
+  formSubmitHandler = contact => {
+    const { contacts } = this.state;
+    contacts.some(({ name }) => name === contact.name)
+    ? alert(`${contact.name} is already in contacts`)
+    :
+    this.setState(prevState => ({
+      contacts: [
+          { id: nanoid(), 
+          name: contact.name, 
+          number: contact.number },
+          ...prevState.contacts,
+      ],
+    }));
+  };
+
 deleteContact = (contactId) =>{
   this.setState(prevState =>({
     contacts: prevState.contacts.filter(contact =>
        contact.id !== contactId),
   }))
 }
-
-formSubmitHandler = contact => {
-  const { contacts } = this.state;
-  contacts.some(({ name }) => name === contact.name)
-  ? alert(`${contact.name} is already in contacts`)
-  :
-  this.setState(prevState => ({
-    contacts: [
-        { id: nanoid(), 
-        name: contact.name, 
-        number: contact.number },
-        ...prevState.contacts,
-    ],
-  }));
-};
 
 changeFilter =e=> {
   this.setState({filter: e.currentTarget.value})
@@ -49,7 +49,6 @@ getVisibleContacts = () => {
     )
   
 }
-
 
 render () {
   const { filter} = this.state;
